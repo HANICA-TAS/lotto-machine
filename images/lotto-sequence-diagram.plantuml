@@ -1,0 +1,14 @@
+@startuml
+actor User
+User -> LottoMachine: executeDraw
+LottoMachine --> GlassSphere: resetBalls
+GlassSphere --> ScoreBoard: empty
+loop 6 times
+      LottoMachine -> GlassSphere: ball = scoopBall()
+      LottoMachine -> ScoreBoard: placeBall(ball)
+end
+LottoMachine -> GlassSphere: ball = scoopBall()
+LottoMachine -> ScoreBoard: placeBonusBall(ball)
+LottoMachine -> ScoreBoard: sortBalls()
+LottoMachine -> ScoreBoard: printScore()
+@enduml
